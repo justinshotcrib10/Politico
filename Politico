@@ -1,0 +1,102 @@
+"use client";
+
+import { useState } from "react";
+
+const TEXAS_COUNTIES = [
+  "Anderson", "Andrews", "Angelina", "Aransas", "Archer", "Armstrong",
+  "Atascosa", "Austin", "Bailey", "Bandera", "Bastrop", "Baylor",
+  "Bee", "Bell", "Bexar", "Blanco", "Borden", "Bosque",
+  "Bowie", "Brazoria", "Brazos", "Brewster", "Briscoe", "Brooks",
+  "Brown", "Burleson", "Burnet", "Caldwell", "Calhoun", "Callahan",
+  "Cameron", "Camp", "Carson", "Cass", "Castro", "Chambers",
+  "Cherokee", "Childress", "Clay", "Cochran", "Coke", "Coleman",
+  "Collin", "Collingsworth", "Colorado", "Comal", "Comanche", "Concho",
+  "Cooke", "Coryell", "Cottle", "Crane", "Crockett", "Crosby",
+  "Culberson", "Dallam", "Dallas", "Dawson", "Deaf Smith", "Delta",
+  "Denton", "DeWitt", "Dickens", "Dimmit", "Donley", "Duval",
+  "Eastland", "Ector", "Edwards", "Ellis", "El Paso", "Erath",
+  "Falls", "Fannin", "Fayette", "Fisher", "Floyd", "Foard",
+  "Fort Bend", "Franklin", "Freestone", "Frio", "Gaines", "Galveston",
+  "Garza", "Gillespie", "Glasscock", "Goliad", "Gonzales", "Gray",
+  "Grayson", "Gregg", "Grimes", "Guadalupe", "Hale", "Hall",
+  "Hamilton", "Hansford", "Hardeman", "Hardin", "Harris", "Harrison",
+  "Hartley", "Haskell", "Hays", "Hemphill", "Henderson", "Hidalgo",
+  "Hill", "Hockley", "Hood", "Hopkins", "Houston", "Howard",
+  "Hudspeth", "Hunt", "Hutchinson", "Irion", "Jack", "Jackson",
+  "Jasper", "Jeff Davis", "Jefferson", "Jim Hogg", "Jim Wells", "Johnson",
+  "Jones", "Karnes", "Kaufman", "Kendall", "Kenedy", "Kent",
+  "Kerr", "Kimble", "King", "Kinney", "Kleberg", "Knox",
+  "Lamar", "Lamb", "Lampasas", "La Salle", "Lavaca", "Lee",
+  "Leon", "Liberty", "Limestone", "Lipscomb", "Live Oak", "Llano",
+  "Loving", "Lubbock", "Lynn", "Madison", "Marion", "Martin",
+  "Mason", "Matagorda", "Maverick", "McCulloch", "McLennan", "McMullen",
+  "Medina", "Menard", "Midland", "Milam", "Mills", "Mitchell",
+  "Montague", "Montgomery", "Moore", "Morris", "Motley", "Nacogdoches",
+  "Navarro", "Newton", "Nolan", "Nueces", "Ochiltree", "Oldham",
+  "Orange", "Palo Pinto", "Panola", "Parker", "Parmer", "Pecos",
+  "Polk", "Potter", "Presidio", "Rains", "Randall", "Reagan",
+  "Real", "Red River", "Reeves", "Refugio", "Roberts", "Robertson",
+  "Rockwall", "Runnels", "Rusk", "Sabine", "San Augustine", "San Jacinto",
+  "San Patricio", "San Saba", "Schleicher", "Scurry", "Shackelford", "Shelby",
+  "Sherman", "Smith", "Somervell", "Starr", "Stephens", "Sterling",
+  "Stonewall", "Sutton", "Swisher", "Tarrant", "Taylor", "Terrell",
+  "Terry", "Throckmorton", "Titus", "Tom Green", "Travis", "Trinity",
+  "Tyler", "Upshur", "Upton", "Uvalde", "Val Verde", "Van Zandt",
+  "Victoria", "Walker", "Waller", "Ward", "Washington", "Webb",
+  "Wharton", "Wheeler", "Wichita", "Wilbarger", "Willacy", "Williamson",
+  "Wilson", "Winkler", "Wise", "Wood", "Yoakum", "Young", "Zapata", "Zavala"
+];
+
+export default function HomePage() {
+  const = useState("Texas");
+  const = useState("");
+
+  return (
+    <main className="min-h-screen bg-white">
+      <header className="bg-navy-900 text-white py-4 px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <h1 className="text-2xl font-bold tracking-wide">
+            <span className="text-red-600">★</span> American Politics Hub
+          </h1>
+          <nav className="flex gap-6 text-sm">
+            <a href="#" className="hover:text-red-400">Browse</a>
+            <a href="#" className="hover:text-red-400">About</a>
+            <a href="#" className="hover:text-red-400">Sign In</a>
+          </nav>
+        </div>
+      </header>
+
+      <section className="bg-gradient-to-r from-navy-900 via-navy-800 to-red-900 text-white py-16 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">
+            Find Your Representatives
+          </h2>
+          <p className="text-lg text-gray-200 mb-8">
+            Search politicians at every level — federal, state, and local
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <select
+              value={selectedState}
+              onChange={(e) => {
+                setSelectedState(e.target.value);
+                setSelectedCounty("");
+              }}
+              className="px-4 py-3 rounded-lg text-navy-900 font-medium"
+            >
+              <option value="Texas">Texas</option>
+              <option value="California">California</option>
+              <option value="Florida">Florida</option>
+            </select>
+            <select
+              value={selectedCounty}
+              onChange={(e) => setSelectedCounty(e.target.value)}
+              className="px-4 py-3 rounded-lg text-navy-900 font-medium"
+            >
+              <option value="">All Counties</option>
+              {TEXAS_COUNTIES.map((county) => (
+                <option key={county} value={county}>
+                  {county} County
+                </option>
+              ))}
+            </select>
+            <button className="bg-red-600 hover
